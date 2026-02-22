@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- background -->
+  <rect width="64" height="64" rx="14" fill="#22c55e"/>
+
+  <!-- chat bubble -->
+  <path
+    fill="#ffffff"
+    d="
+      M32 16
+      C20 16 12 23 12 32
+      C12 41 20 48 32 48
+      C35 48 38 47.5 40.5 46.5
+      L46 50
+      L44 44
+      C48 41.5 52 37.5 52 32
+      C52 23 44 16 32 16
+      Z
+    "
+  />
+</svg>
