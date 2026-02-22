@@ -173,7 +173,7 @@
   <body class="bg-slate-50 text-slate-900">
      <script>
       ;(function () {
-        const threshold = 160
+        const threshold = 200
         const detect = () => {
           if (
             window.outerWidth - window.innerWidth > threshold ||
@@ -187,6 +187,33 @@
         setInterval(detect, 500)
       })()
     </script>
+    <!-- <script>
+  ;(function () {
+    const threshold = 160
+    const isMobile = /iphone|ipad|ipod|android/i.test(navigator.userAgent)
+
+    let lastTrigger = 0
+
+    const detect = () => {
+      const diffW = window.outerWidth - window.innerWidth
+      const diffH = window.outerHeight - window.innerHeight
+
+      if (diffW > threshold || diffH > threshold) {
+        const now = Date.now()
+
+        if (now - lastTrigger < 300) {
+          document.documentElement.innerHTML = ''
+          location.replace('about:blank')
+        }
+        lastTrigger = now
+      }
+    }
+
+    if (isMobile) {
+      window.addEventListener('resize', detect)
+    }
+  })()
+</script> -->
     <div id="root"></div>
   </body>
 </html>
