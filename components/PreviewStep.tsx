@@ -65,7 +65,7 @@ const PreviewStep: React.FC<PreviewStepProps> = ({
       setLoading(false)
       setDeployStatus({
         type: 'error',
-        msg: 'Missing Channel Access Token or Image.'
+        msg: 'ไม่พบ Token หรือรูปภาพ กรุณาตรวจสอบข้อมูลของคุณอีกครั้ง'
       })
       return
     }
@@ -120,7 +120,7 @@ const PreviewStep: React.FC<PreviewStepProps> = ({
 
       return setDeployStatus({
         type: 'success',
-        msg: `Rich Menu created successfully!\nID: ${
+        msg: `Rich Menu ถูกสร้างสำเร็จแล้ว!\nID: ${
           result.richMenuId || 'Success'
         }`
       })
@@ -147,8 +147,10 @@ const PreviewStep: React.FC<PreviewStepProps> = ({
       {loading ? <LoadingScreen /> : null}
       <div className='space-y-6 animate-fadeIn'>
         <div className='text-center'>
-          <h2 className='text-2xl font-bold text-slate-800'>Final Preview</h2>
-          <p className='text-slate-500'>How your menu will appear to users.</p>
+          <h2 className='text-2xl font-bold text-slate-800'>
+            Rich Menu ตัวอย่าง
+          </h2>
+          <p className='text-slate-500'>ที่ Rich Menu ของคุณจะปรากฏแก่ผู้ใช้</p>
         </div>
 
         <div className='flex flex-col md:flex-row gap-8 items-start'>
@@ -187,7 +189,8 @@ const PreviewStep: React.FC<PreviewStepProps> = ({
               </div>
             </div>
             <div className='text-center text-xs text-slate-400'>
-              Hover areas to see action labels
+              พื้นที่ที่สามารถคลิกได้จะแสดงชื่อ
+              Actionเมื่อคุณวางเมาส์เหนือพื้นที่นั้นๆ (ถ้าได้กำหนดไว้ใน JSON)
             </div>
           </div>
 
@@ -242,7 +245,7 @@ const PreviewStep: React.FC<PreviewStepProps> = ({
                   onClick={() => (window.location.href = '/')}
                   className='w-full py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors'
                 >
-                  Back To Home
+                  กลับไปหน้าแรก
                 </button>
               </div>
             ) : (
@@ -259,14 +262,14 @@ const PreviewStep: React.FC<PreviewStepProps> = ({
                   {isDeploying && (
                     <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin' />
                   )}
-                  {isDeploying ? 'Deploying...' : 'Setup Rich Menu Now'}
+                  {isDeploying ? 'กำลัง Deploy...' : 'ตั้งค่า Rich Menu ตอนนี้'}
                 </button>
                 <button
                   onClick={onBack}
                   disabled={isDeploying}
                   className='w-full py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors'
                 >
-                  Edit Configuration
+                  แก้ไขการกำหนดค่า JSON
                 </button>
               </div>
             )}

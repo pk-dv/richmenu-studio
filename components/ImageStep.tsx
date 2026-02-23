@@ -18,8 +18,8 @@ const ImageStep: React.FC<ImageStepProps> = ({ onImageUpload, imageUrl, onNext, 
   return (
     <div className="space-y-6 animate-fadeIn">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-slate-800">Rich Menu Image</h2>
-        <p className="text-slate-500">Upload your background image (PNG or JPEG).</p>
+        <h2 className="text-2xl font-bold text-slate-800">รูป Rich Menu</h2>
+        <p className="text-slate-500">อัพโหลดรูปภาพพื้นหลังของคุณ (PNG หรือ JPEG).</p>
       </div>
 
       <div className="group relative">
@@ -33,7 +33,7 @@ const ImageStep: React.FC<ImageStepProps> = ({ onImageUpload, imageUrl, onNext, 
               <div className="relative">
                 <img src={imageUrl} alt="Preview" className="max-h-64 rounded-xl shadow-xl" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
-                  <span className="text-white font-bold px-4 py-2 bg-[#06C755] rounded-lg">Change Image</span>
+                  <span className="text-white font-bold px-4 py-2 bg-[#06C755] rounded-lg">เปลี่ยนรูป</span>
                 </div>
               </div>
             ) : (
@@ -44,8 +44,8 @@ const ImageStep: React.FC<ImageStepProps> = ({ onImageUpload, imageUrl, onNext, 
                   </svg>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm font-bold text-slate-700">Click to upload image</p>
-                  <p className="text-xs text-slate-400 mt-1">PNG, JPG up to 1MB</p>
+                  <p className="text-sm font-bold text-slate-700">คลิกเพื่ออัพโหลดรูป</p>
+                  <p className="text-xs text-slate-400 mt-1">PNG, JPG ขนาดไม่เกิน 1MB</p>
                 </div>
               </>
             )}
@@ -68,7 +68,7 @@ const ImageStep: React.FC<ImageStepProps> = ({ onImageUpload, imageUrl, onNext, 
           onClick={onBack}
           className="flex-1 py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors"
         >
-          Back
+          กลับไปแก้ไข JSON
         </button>
         <button 
           onClick={onNext}
@@ -79,7 +79,7 @@ const ImageStep: React.FC<ImageStepProps> = ({ onImageUpload, imageUrl, onNext, 
               : 'bg-slate-300 cursor-not-allowed'
           }`}
         >
-          Review & Launch
+          ไปต่อที่ ตรวจสอบและเปิดใช้งาน
         </button>
       </div>
     </div>

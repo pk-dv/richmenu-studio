@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-black bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent leading-none">
-              LineOA Rich Menu Studio
+              Rich Menu Studio
             </span>
             {/* <span className="text-[10px] font-bold text-[#06C755] tracking-tighter uppercase mt-0.5">
               by Punnathat.k
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
           </div>
         </div>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-5">
           <div className="h-4 w-px bg-slate-200 hidden md:block"></div>
 
           {profile ? (
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
                 <div className="hidden sm:flex flex-col items-start leading-tight">
                   <span className="text-xs font-black text-slate-800">{profile.displayName}</span>
                   <span className={`text-[10px] font-bold uppercase tracking-tighter ${isAuthorized === true ? 'text-[#06C755]' : isAuthorized === false ? 'text-red-500' : 'text-slate-400'}`}>
-                    {isAuthorized === true ? 'Verified' : isAuthorized === false ? 'No Access' : 'Verifying...'}
+                    {isAuthorized === true ? 'ตรวจสอบแล้ว' : isAuthorized === false ? 'ไม่มีสิทธิ์' : 'กำลังตรวจสอบ...'}
                   </span>
                 </div>
                 <svg className={`w-4 h-4 text-slate-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
                   <div className="fixed inset-0 z-40" onClick={() => setShowDropdown(false)}></div>
                   <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-2xl z-50 py-2 animate-scaleUp overflow-hidden">
                     <div className="px-4 py-3 border-b border-slate-100 mb-1">
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Signed in as</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">เข้าสู่ระบบ ด้วย Line</p>
                       <p className="text-sm font-bold text-slate-800 truncate">{profile.displayName}</p>
                     </div>
                     <button 
@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                       </svg>
-                      Sign Out
+                      ออกจากระบบ
                     </button>
                   </div>
                 </>
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
-              <span>Auth Error</span>
+              <span>เกิดข้อผิดพลาด</span>
             </div>
           ) : (
             <button 
@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onLogin, onLogout, isLiffInit,
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 10.3c0-4.6-4.9-8.3-11-8.3C6.9 2 2 5.7 2 10.3c0 4.1 3.9 7.5 9.2 8.1l-1.3 3.9 4.3-2.6h1.8c6.1 0 11-3.7 11-8.1z" />
               </svg>
-              <span>{isLiffInit ? 'Sign In' : 'Initializing...'}</span>
+              <span>{isLiffInit ? 'เข้าสู่ระบบ' : 'กำลังเตรวจสอบ...'}</span>
             </button>
           )}
         </div>

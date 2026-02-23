@@ -146,7 +146,7 @@ const JsonStep: React.FC<JsonStepProps> = ({ json, onJsonChange, onNext, onBack,
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
               </svg>
-              JSON Verified
+              JSON ผ่านการตรวจสอบแล้ว
             </div>
           )}
         </div>
@@ -157,7 +157,7 @@ const JsonStep: React.FC<JsonStepProps> = ({ json, onJsonChange, onNext, onBack,
           onClick={onBack}
           className="flex-1 py-5 bg-white border-2 border-slate-100 text-slate-500 rounded-2xl font-bold hover:bg-slate-50 hover:border-slate-200 transition-all active:scale-95"
         >
-          Back
+          กลับไปที่ Layout
         </button>
         <button 
           onClick={onNext}
@@ -168,7 +168,7 @@ const JsonStep: React.FC<JsonStepProps> = ({ json, onJsonChange, onNext, onBack,
               : 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
           }`}
         >
-          <span>Continue to Asset</span>
+          <span>ไปต่อที่ Asset</span>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>

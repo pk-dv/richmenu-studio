@@ -125,12 +125,6 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
         method: 'GET'
       })
 
-      if (!res.ok) {
-        throw new Error(
-          `Cloud verification service error (Status: ${res.status})`
-        )
-      }
-
       const data = await res.json()
 
       setBanksDetail(data.lists || [])
@@ -186,7 +180,6 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
 
   const confirmOrder = async () => {
     setLoading(true)
-    console.log(`confirmOrder`)
 
     if (!file) {
       errorPopup('กรุณาแนบสลิปก่อน')
@@ -486,7 +479,7 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
                   >
                     <path d='M24 10.3c0-4.6-4.9-8.3-11-8.3C6.9 2 2 5.7 2 10.3c0 4.1 3.9 7.5 9.2 8.1l-1.3 3.9 4.3-2.6h1.8c6.1 0 11-3.7 11-8.1z' />
                   </svg>
-                  <span>Verify Slip Now</span>
+                  <span>ตรวจสอบสลิป</span>
                 </button>
                 <p className='text-[10px] text-slate-400 font-medium'>
                   การชำระเงินมีความปลอดภัยและได้รับการตรวจสอบทันที
@@ -523,10 +516,10 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
               </div>
               <span className='text-[10px] font-bold tracking-tight uppercase'>
                 {isVerifyingAuth
-                  ? 'Verifying Access...'
+                  ? 'กำลังตรวจสอบสิทธิ์...'
                   : isAuthorized === true
-                  ? `Access Granted: ${liffProfile.displayName}`
-                  : 'Access Denied'}
+                  ? `สิทธิ์การใช้งานได้รับการยืนยันแล้ว: ${liffProfile.displayName}`
+                  : 'สิทธิ์การใช้งานถูกปฏิเสธ'}
               </span>
             </div>
           ) : (
@@ -539,19 +532,19 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z' />
               </svg>
               <span className='text-[10px] font-bold text-red-500 tracking-tight uppercase'>
-                LINE Login Required
+                Line ยังไม่เชื่อมต่อ
               </span>
             </div>
           )}
           <h2 className='text-3xl font-black text-slate-800 tracking-tight'>
-            Connect Line OA
+            เชื่อมต่อ LineOA
           </h2>
           <p className='text-slate-500 text-sm'>
             {!liffProfile
-              ? 'Sign in with LINE using the button at the top right to verify your identity.'
+              ? 'เข้าสู่ระบบด้วย LINE ผ่านปุ่มที่ด้านบนขวาเพื่อยืนยันตัวตนของคุณและตรวจสอบสิทธิ์การใช้งานระบบ'
               : isAuthorized === false
-              ? 'Your account does not have permission to access this tool.'
-              : 'Identity verified. Now, provide your Messaging API credentials.'}
+              ? ' บัญชีของคุณไม่มีสิทธิ์ในการเข้าถึงเครื่องมือนี้'
+              : 'ยืนยันตัวตนแล้ว คุณสามารถใช้ฟีเจอร์ทั้งหมดของ Rich Menu Studio ได้ทันทีหลังชำระค่าบริการ'}
           </p>
         </div>
 
@@ -680,7 +673,7 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
                     {isVerifying ? (
                       <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin' />
                     ) : (
-                      'Verify'
+                      'ตรวจสอบ'
                     )}
                   </button>
                 </div>
@@ -739,7 +732,7 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
                       {isVerifying ? (
                         <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin' />
                       ) : (
-                        'Verify'
+                        'ตรวจสอบ'
                       )}
                     </button>
                   </div>
@@ -779,17 +772,19 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
             </div>
             <div className='space-y-2'>
               <h4 className='text-white font-black text-xl'>
-                LINE Identity Required
+                กรุณาเข้าสู่ระบบด้วย LINE
               </h4>
               <p className='text-slate-400 text-xs max-w-[240px] mx-auto leading-relaxed'>
-                Please sign in to verify your system permissions.
+                โปรดเข้าสู่ระบบด้วย LINE
+                เพื่อยืนยันสิทธิ์การใช้งานระบบและเข้าถึงฟีเจอร์ทั้งหมดของ Rich
+                Menu Studio ได้ทันทีหลังชำระค่าบริการ
               </p>
             </div>
             <button
               onClick={onLogin}
               className='bg-[#06C755] text-white w-full py-4 rounded-2xl font-black text-sm hover:bg-[#05b14c] transition-all active:scale-95 shadow-xl shadow-[#06C755]/20'
             >
-              Sign In with LINE Now
+              เข้าสู่ระบบด้วย LINE ตอนนี้
             </button>
           </div>
         )}
@@ -806,14 +801,14 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
           >
             <span>
               {isVerifyingAuth
-                ? 'Verifying Permission...'
+                ? 'กำลังตรวจสอบสิทธิ์...'
                 : !liffProfile
-                ? 'Login Required'
+                ? 'ต้องเข้าสู่ระบบด้วย LINE'
                 : isAuthorized === false
                 ? 'ไม่มีสิทธิ์ใช้งานระบบ'
                 : !accountInfo
-                ? 'Verify OA Token'
-                : 'Setup Layout'}
+                ? 'ตรวจสอบ OA Token'
+                : 'ตั้งค่า Layout'}
             </span>
             <svg
               className='w-6 h-6'
@@ -829,6 +824,107 @@ const ConfigStep: React.FC<ConfigStepProps> = ({
               />
             </svg>
           </button>
+        </div>
+      </div>
+
+      <div className='mt-8 bg-white border-2 border-slate-100 rounded-[2rem] p-8 space-y-6 animate-fadeIn shadow-sm'>
+        <div className='flex items-center gap-3 border-b border-slate-100 pb-4'>
+          <div className='w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-slate-600'>
+            <svg
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'
+              />
+            </svg>
+          </div>
+          <div className='text-left'>
+            <h4 className='text-slate-800 font-black text-lg tracking-tight'>
+              คู่มือการใช้งาน (How to Use)
+            </h4>
+            <p className='text-slate-400 text-[10px] font-bold uppercase tracking-widest'>
+              ขั้นตอนการสร้าง Rich Menu
+            </p>
+          </div>
+        </div>
+
+        <div className='grid gap-4'>
+          {[
+            {
+              step: '01',
+              title: 'เข้าสู่ระบบด้วย LINE',
+              desc: 'คลิกปุ่ม "Sign In with LINE" ด้านบนเพื่อยืนยันตัวตนและตรวจสอบสิทธิ์การใช้งาน'
+            },
+            {
+              step: '02',
+              title: 'เตรียม Messaging API',
+              desc: 'ไปที่ LINE Developers Console เลือก Provider และ Channel ที่ต้องการ'
+            },
+            {
+              step: '03',
+              title: 'คัดลอก Access Token',
+              desc: 'นำ Channel Access Token (long-lived) มาวางในช่องด้านบนและกด Verify'
+            },
+            {
+              step: '04',
+              title: 'ออกแบบ Layout',
+              desc: 'กำหนดพื้นที่คลิก (Tap Areas) ในรูปแบบ JSON (สามารถใช้ Auto-Fix ช่วยได้)'
+            },
+            {
+              step: '05',
+              title: 'อัปโหลดรูปภาพ',
+              desc: 'อัปโหลดรูปพื้นหลัง Rich Menu (ขนาดแนะนำ 2500x1686 px ไม่เกิน 1MB)'
+            },
+            {
+              step: '06',
+              title: 'ติดตั้ง (Deploy)',
+              desc: 'ตรวจสอบความถูกต้องและกดปุ่ม Setup Rich Menu เพื่อติดตั้งลงใน LINE OA ทันที'
+            }
+          ].map((item, idx) => (
+            <div key={idx} className='flex gap-4 group text-left'>
+              <div className='flex-shrink-0 w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-[10px] font-black text-slate-400 group-hover:bg-[#06C755]/10 group-hover:text-[#06C755] group-hover:border-[#06C755]/20 transition-all'>
+                {item.step}
+              </div>
+              <div className='space-y-0.5'>
+                <p className='text-sm font-black text-slate-700'>
+                  {item.title}
+                </p>
+                <p className='text-xs text-slate-500 leading-relaxed'>
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className='pt-2 text-left'>
+          <a
+            href='https://developers.line.biz/en/docs/messaging-api/using-rich-menus/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-flex items-center gap-2 text-[10px] font-bold text-[#06C755] hover:underline'
+          >
+            <span>อ่านเอกสารเพิ่มเติมจาก LINE Developers</span>
+            <svg
+              className='w-3 h-3'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </>
